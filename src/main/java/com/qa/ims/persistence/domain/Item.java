@@ -1,15 +1,16 @@
 package com.qa.ims.persistence.domain;
 
-public class Items {
+public class Item {
 	private Long item_id;
 	private String item_name;
-	private Long item_value;
+	private Double item_value;
 
-	public Items(String item_name) {
+	public Item(String item_name, Double item_value) {
 		this.setItem_name(item_name);
+		this.setItem_value(item_value);
 	}
 
-	public Items(Long item_id, String item_name, Long item_value) {
+	public Item(Long item_id, String item_name, Double item_value) {
 		this.setItem_id(item_id);
 		this.setItem_name(item_name);
 		this.setItem_value(item_value);
@@ -32,17 +33,17 @@ public class Items {
 		this.item_name = item_name;
 	}
 
-	public Long getItem_value() {
+	public Double getItem_value() {
 		return item_value;
 	}
 
-	public void setItem_value(Long item_value) {
+	public void setItem_value(Double item_value) {
 		this.item_value = item_value;
 	}
 
 	@Override
 	public String toString() {
-		return ("id: " + item_id + "\r\n item name: " + item_name + "\r\n price: " + item_value);
+		return ("Item id: " + item_id + " Item name: " + item_name + " Price: " + item_value);
 
 	}
 
@@ -64,7 +65,7 @@ public class Items {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Items other = (Items) obj;
+		Item other = (Item) obj;
 		if (getItem_name() == null) {
 			if (other.getItem_name() != null)
 				return false;

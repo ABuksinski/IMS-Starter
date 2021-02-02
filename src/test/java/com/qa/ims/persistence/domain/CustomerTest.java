@@ -31,6 +31,7 @@ public class CustomerTest  {
 			assertEquals(2L, test.getId(),0);
 
 }
+		@SuppressWarnings("unused")
 		@Test 
 		public  void testConstructor() {
 			Customer cust1 = new Customer ("Adrian" , "Buksinski");
