@@ -24,7 +24,7 @@ public class CustomerController implements CrudController<Customer> {
 		super();
 		this.customerDAO = customerDAO;
 		this.utils = utils;
-	}
+	} 
 
 	/**
 	 * Reads all customers to the logger
@@ -37,6 +37,7 @@ public class CustomerController implements CrudController<Customer> {
 		}
 		return customers;
 	}
+	
 
 	/**
 	 * Creates a customer by taking in user input
