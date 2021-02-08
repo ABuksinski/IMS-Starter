@@ -50,7 +50,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 			OrderItem orderitem = orderitemDAO.create(new OrderItem(order_id,item_id, quantity));
 			LOGGER.info("Item added");
 
-			LOGGER.info("Would you like  to add another Product into the order /r/n YES or NO");
+			LOGGER.info("Would you like  to add another Product into the order \r\n YES or NO");
 			String YN = utils.getString();
 			if (YN.equalsIgnoreCase("yes")) {
 				bOoLeAn = true;
@@ -82,7 +82,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 	@Override
 	public OrderItem update() {
 		// TODO Auto-generated method stub
-		LOGGER.info("Please enter the ID of  the order you would  like to put Product in");
+		LOGGER.info("Please enter the ID of  the order you would  like to change");
 		Long order_id = utils.getLong();
 		LOGGER.info("Please enter item ID");
 		Long item_id = utils.getLong();

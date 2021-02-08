@@ -1,5 +1,9 @@
 package com.qa.ims.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,6 +14,8 @@ import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.dao.OrderItemDAO;
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
+import com.qa.ims.utils.DBUtils;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
@@ -36,6 +42,9 @@ public class OrderController implements CrudController<Order> {
 		}
 		orderitemController.readAll();
 		return orders;
+		
+		
+
 	}
 
 	@Override
@@ -45,8 +54,16 @@ public class OrderController implements CrudController<Order> {
 		Long customer_id = utils.getLong();
 		Order order = orderDAO.create(new Order(customer_id));
 		LOGGER.info("Order created");
-		orderitemController.create(order.getOrder_id());
-		return order;
+		LOGGER.info("Would you like to add  item to an order? /r/n Yes or No");
+		String adding = utils.getString();
+		if (adding.equalsIgnoreCase("yes")) {
+			LOGGER.info(order.getOrder_id());
+			orderitemController.create(order.getOrder_id());
+			return order;
+		} else {
+			return null;
+		}
+
 	}
 
 	@Override
@@ -54,6 +71,7 @@ public class OrderController implements CrudController<Order> {
 		// TODO Auto-generated method stub
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
+		LOGGER.info(orderDAO.readOrders(customer_id));
 		LOGGER.info("Would you like to add a new Product or update existing order?");
 		LOGGER.info("NEW or EXISTING");
 		String method = utils.getString();
@@ -61,6 +79,7 @@ public class OrderController implements CrudController<Order> {
 			orderitemController.createNew();
 			return null;
 		} else if (method.equalsIgnoreCase("EXISTING")) {
+			orderitemController.readAll();
 			orderitemController.update();
 			return null;
 		} else {

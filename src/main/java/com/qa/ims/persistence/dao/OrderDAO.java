@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
-
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
@@ -68,6 +68,28 @@ public class OrderDAO implements Dao<Order> {
 						.executeQuery("SELECT * FROM orders ORDER BY customer_id DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+	
+	
+	public List<Order> readOrders(Long customer_id) {
+		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("SELECT * FROM orders WHERE customer_id = ?");) {
+			statement.setLong(1, customer_id);
+			List<Order> orders = new ArrayList<>();
+			try (ResultSet resultSet = statement.executeQuery();) {
+				while (resultSet.next()) {
+					orders.add(modelFromResultSet(resultSet));
+				}
+				return orders;
+			}
+
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

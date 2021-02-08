@@ -26,38 +26,18 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 		return new OrderItem(order_id, item_id, quantity);
 	}
+
 	public OrderItem modelFromResultSet2(ResultSet resultSet) throws SQLException {
 		Long order_id = resultSet.getLong("order_id");
 		Long item_id = resultSet.getLong("item_id");
 		Long quantity = resultSet.getLong("quantity");
-		String first_name= resultSet.getString("first_name");
+		String first_name = resultSet.getString("first_name");
 		String surname = resultSet.getString("surname");
 		String item_name = resultSet.getString("item_name");
 		Double item_value = resultSet.getDouble("item_value");
 //		Double cost = resultSet.getDouble("Total Cost");
 
-		return new OrderItem(order_id, item_id, quantity , first_name , surname, item_name, item_value );
-	}
-
-	@Override
-	public List<OrderItem> readAll() {
-		// TODO Auto-generated method stub
-		try (Connection connection = DBUtils.getInstance().getConnection();
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery(
-						"SELECT * \r\n" + "FROM ordersitems n\r\n" + "LEFT JOIN orders o ON n.order_id = o.order_id\r\n"
-								+ "LEFT JOIN items i ON n.item_id = i.item_id\r\n"
-								+ "Left Join customers c on c.id = o.customer_id ;");) {
-			List<OrderItem> orderitems = new ArrayList<>();
-			while (resultSet.next()) {
-				orderitems.add(modelFromResultSet2(resultSet));
-			}
-			return orderitems;
-		} catch (SQLException e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-		}
-		return new ArrayList<>();
+		return new OrderItem(order_id, item_id, quantity, first_name, surname, item_name, item_value);
 	}
 
 	public OrderItem readLatest() {
@@ -72,6 +52,25 @@ public class OrderItemDAO implements Dao<OrderItem> {
 			LOGGER.error(e.getMessage());
 		}
 		return null;
+	}
+
+	@Override
+	public List<OrderItem> readAll() {
+		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(
+						"SELECT *  FROM ordersitems n LEFT JOIN orders o ON n.order_id = o.order_id LEFT JOIN items i ON n.item_id = i.item_id LEFT JOIN customers c ON c.id = o.customer_id ORDER BY o.order_id;");) {
+			List<OrderItem> orderitems = new ArrayList<>();
+			while (resultSet.next()) {
+				orderitems.add(modelFromResultSet2(resultSet));
+			}
+			return orderitems;
+		} catch (SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return new ArrayList<>();
 	}
 
 	@Override
@@ -92,15 +91,17 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		return null;
 	}
 
+	
+
 	@Override
 	public OrderItem create(OrderItem orderitem) {
 		// TODO Auto-generated method stub
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO ordersitems(item_id, quantity,order_id) VALUES (?, ? , ?) ");) {
-			statement.setLong(1, orderitem.getItem_id());
-			statement.setLong(2, orderitem.getQuantity());
-			statement.setLong(3, orderitem.getOrder_id());
+						.prepareStatement("INSERT INTO ordersitems(order_id, item_id, quantity) VALUES (?, ? ,?) ");) {
+			statement.setLong(1, orderitem.getOrder_id());
+			statement.setLong(2, orderitem.getItem_id());
+			statement.setLong(3, orderitem.getQuantity());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -113,11 +114,11 @@ public class OrderItemDAO implements Dao<OrderItem> {
 	public OrderItem createNew(OrderItem orderitem, Long order_id) {
 		// TODO Auto-generated method stub
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement(
-						"INSERT INTO orderitems(item_id, quantity) VALUES (?, ?) WHERE order_id = ?");) {
-			statement.setLong(1, orderitem.getItem_id());
-			statement.setLong(2, orderitem.getQuantity());
-			statement.setLong(3, order_id);
+				PreparedStatement statement = connection
+						.prepareStatement("INSERT INTO ordersitems(order_id ,item_id, quantity) VALUES (? ,?, ?)");) {
+			statement.setLong(2, orderitem.getItem_id());
+			statement.setLong(3, orderitem.getQuantity());
+			statement.setLong(1, order_id);
 			statement.executeUpdate();
 
 			return readLatest();
@@ -133,9 +134,12 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		// TODO Auto-generated method stub
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE ordersitems SET item_id = ?, quantity = ? WHERE order_id = ?");) {
-			statement.setLong(1, orderitem.getItem_id());
-			statement.setLong(2, orderitem.getQuantity());
+						.prepareStatement("UPDATE ordersitems SET quantity = ? WHERE item_id = ? and order_id = ?;");) {
+			statement.setLong(2, orderitem.getItem_id());
+			LOGGER.info(orderitem.getItem_id());
+			LOGGER.info(orderitem.getQuantity());
+			LOGGER.info(orderitem.getOrder_id());
+			statement.setLong(1, orderitem.getQuantity());
 			statement.setLong(3, orderitem.getOrder_id());
 			statement.executeUpdate();
 			return read(orderitem.getOrder_id());
@@ -164,7 +168,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 	public Double calculateOrderCost(List<OrderItem> orderitems) {
 		Double total = 0.0;
 		for (OrderItem orderitem : orderitems) {
-			total = total + (orderitem.getItem_value()*orderitem.getQuantity());
+			total = total + (orderitem.getItem_value() * orderitem.getQuantity());
 			orderitem.setCost(total);
 		}
 		return total;

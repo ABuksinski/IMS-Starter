@@ -3,7 +3,7 @@ package com.qa.ims.persistence.domain;
 public class Order {
 	private Long order_id;
 	private Long customer_id;
-	private Double order_value;
+
 
 	public Order(Long customer_id ) {
 		this.setCustomer_id(customer_id);
@@ -34,7 +34,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Customer ID: " + customer_id + " Order ID: " + order_id ;
+		return "Customer ID: " + customer_id +" \r\n"+ " Order ID: " + order_id ;
 	}
 
 	@Override
