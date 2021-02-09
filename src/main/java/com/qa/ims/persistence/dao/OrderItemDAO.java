@@ -136,13 +136,10 @@ public class OrderItemDAO implements Dao<OrderItem> {
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE ordersitems SET quantity = ? WHERE item_id = ? and order_id = ?;");) {
 			statement.setLong(2, orderitem.getItem_id());
-			LOGGER.info(orderitem.getItem_id());
-			LOGGER.info(orderitem.getQuantity());
-			LOGGER.info(orderitem.getOrder_id());
 			statement.setLong(1, orderitem.getQuantity());
 			statement.setLong(3, orderitem.getOrder_id());
 			statement.executeUpdate();
-			return read(orderitem.getOrder_id());
+			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

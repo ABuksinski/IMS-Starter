@@ -50,7 +50,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 			OrderItem orderitem = orderitemDAO.create(new OrderItem(order_id,item_id, quantity));
 			LOGGER.info("Item added");
 
-			LOGGER.info("Would you like  to add another Product into the order \r\n YES or NO");
+			LOGGER.info("Would you like  to add another Product into the order \n YES or NO");
 			String YN = utils.getString();
 			if (YN.equalsIgnoreCase("yes")) {
 				bOoLeAn = true;

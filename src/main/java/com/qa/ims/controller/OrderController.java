@@ -53,12 +53,11 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
 		Order order = orderDAO.create(new Order(customer_id));
-		LOGGER.info("Order created");
+		LOGGER.info("Order " + order.getOrder_id() + " created");
 		LOGGER.info("Would you like to add  item to an order? /r/n Yes or No");
 		String adding = utils.getString();
 		if (adding.equalsIgnoreCase("yes")) {
-			LOGGER.info(order.getOrder_id());
-			orderitemController.create(order.getOrder_id());
+			orderitemController.createNew();
 			return order;
 		} else {
 			return null;
