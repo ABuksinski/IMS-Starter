@@ -96,18 +96,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 	@Override
 	public OrderItem create(OrderItem orderitem) {
 		// TODO Auto-generated method stub
-		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO ordersitems(order_id, item_id, quantity) VALUES (?, ? ,?) ");) {
-			statement.setLong(1, orderitem.getOrder_id());
-			statement.setLong(2, orderitem.getItem_id());
-			statement.setLong(3, orderitem.getQuantity());
-			statement.executeUpdate();
-			return readLatest();
-		} catch (Exception e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-		}
+
 		return null;
 	}
 

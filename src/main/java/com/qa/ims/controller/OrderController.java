@@ -1,21 +1,17 @@
 package com.qa.ims.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Scanner;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.dao.OrderItemDAO;
-import com.qa.ims.persistence.domain.Customer;
+
 import com.qa.ims.persistence.domain.Order;
-import com.qa.ims.persistence.domain.OrderItem;
-import com.qa.ims.utils.DBUtils;
+
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
@@ -42,8 +38,6 @@ public class OrderController implements CrudController<Order> {
 		}
 		orderitemController.readAll();
 		return orders;
-		
-		
 
 	}
 
@@ -100,12 +94,14 @@ public class OrderController implements CrudController<Order> {
 			orderitemController.delete();
 			return 0;
 		} else if (method.equalsIgnoreCase("order")) {
-			
-	
-			orderDAO.delete(order_id)}
+			LOGGER.info("Please eneter the ID of an order that you wish to  delete");
+			Long order_id = utils.getLong();
+			orderDAO.delete(order_id);
 			return 0;
-		} else {
-			return 0;
-	}
+		}
 
+		else {
+			return 0;
+		}
+	}
 }

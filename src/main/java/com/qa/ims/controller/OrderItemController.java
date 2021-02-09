@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.OrderItemDAO;
-import com.qa.ims.persistence.domain.Customer;
+
 import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.Utils;
 
@@ -102,7 +102,9 @@ public class OrderItemController implements CrudController<OrderItem> {
 	@Override
 	public int delete() {
 		// TODO Auto-generated method stub
-		return 0;
+		LOGGER.info("Please enter the id of the item you would like to delete");
+		Long item_id = utils.getLong();
+		return orderitemDAO.delete(item_id);
 	}
 
 	@Override
