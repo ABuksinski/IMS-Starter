@@ -34,7 +34,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 			
 		}
 		
-		LOGGER.info(calculateOrderCost(orderitems));
+		
 		return orderitems;
 	}
 	
@@ -94,11 +94,6 @@ public class OrderItemController implements CrudController<OrderItem> {
 	}
 
 	
-	
-	public Double calculateOrderCost(List<OrderItem> orderitem) {
-		LOGGER.info("Total Cost of an order");
-		return orderitemDAO.calculateOrderCost(orderitem);
-	}
 	@Override
 	public int delete() {
 		// TODO Auto-generated method stub

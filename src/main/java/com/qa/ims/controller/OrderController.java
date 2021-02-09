@@ -1,8 +1,6 @@
 package com.qa.ims.controller;
 
-
 import java.util.List;
-
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,8 +35,20 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info(order);
 		}
 		orderitemController.readAll();
-		return orders;
+		LOGGER.info("Would you like to see the total  cost of your order?");
+		LOGGER.info("Yes or No");
+		String cost = utils.getString();
+		if (cost.equalsIgnoreCase("yes")) {
+			LOGGER.info("Enter the Id of your  order:");
+			Long order_id = utils.getLong();
+			LOGGER.info(orderitemDAO.calculateOrderCost(order_id).toStringCost());
+			return null;
+		} else if (cost.equalsIgnoreCase("no")) {
+			return orders;
 
+		} else {
+		}
+		return orders;
 	}
 
 	@Override

@@ -35,9 +35,13 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		String surname = resultSet.getString("surname");
 		String item_name = resultSet.getString("item_name");
 		Double item_value = resultSet.getDouble("item_value");
-//		Double cost = resultSet.getDouble("Total Cost");
 
 		return new OrderItem(order_id, item_id, quantity, first_name, surname, item_name, item_value);
+	}
+
+	public OrderItem modelFromResultSet3(ResultSet resultSet) throws SQLException {
+		Double cost = resultSet.getDouble("Total Cost");
+		return new OrderItem(cost);
 	}
 
 	public OrderItem readLatest() {
@@ -90,8 +94,6 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		}
 		return null;
 	}
-
-	
 
 	@Override
 	public OrderItem create(OrderItem orderitem) {
@@ -151,13 +153,23 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		return 0;
 	}
 
-	public Double calculateOrderCost(List<OrderItem> orderitems) {
-		Double total = 0.0;
-		for (OrderItem orderitem : orderitems) {
-			total = total + (orderitem.getItem_value() * orderitem.getQuantity());
-			orderitem.setCost(total);
+	public OrderItem calculateOrderCost(Long order_id) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("SELECT SUM(i.item_value*n.quantity) as `Total Cost`\r\n"
+								+ "FROM ordersitems n\r\n" + "LEFT JOIN orders o ON n.order_id = o.order_id\r\n"
+								+ "LEFT JOIN items i ON n.item_id = i.item_id\r\n"
+								+ "Left Join customers c on c.id = o.customer_id \r\n" + "where o.order_id = ? ;");) {
+			statement.setLong(1, order_id);
+			try (ResultSet resultSet = statement.executeQuery();) {
+				resultSet.next();
+				return modelFromResultSet3(resultSet);
+			}
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
 		}
-		return total;
-	}
+		return null;
 
+	}
 }

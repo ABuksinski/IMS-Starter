@@ -74,8 +74,7 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return null;
 	}
-	
-	
+
 	public List<Order> readOrders(Long customer_id) {
 		// TODO Auto-generated method stub
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -132,18 +131,7 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order update(Order customer_id) {
-//		// TODO Auto-generated method stub
-//		try (Connection connection = DBUtils.getInstance().getConnection();
-//				PreparedStatement statement = connection
-//						.prepareStatement("UPDATE customers SET first_name = ?, surname = ? WHERE customer_id = ?");) {
-//			statement.setString(1, order.getOrder_id());
-//			statement.setString(2, order.getCustomer_id());
-//			statement.executeUpdate();
-//			return read(order.getCustomer_id());
-//		} catch (Exception e) {
-//			LOGGER.debug(e);
-//			LOGGER.error(e.getMessage());
-//		}
+
 		return null;
 	}
 

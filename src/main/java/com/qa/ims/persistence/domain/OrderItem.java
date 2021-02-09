@@ -14,6 +14,9 @@ public class OrderItem {
 		this.setItem_id(item_id);
 		this.setQuantity(quantity);
 	}
+	public OrderItem(Double cost) {
+		this.setCost(cost);
+	}
 
 	public OrderItem(Long item_id, Long quantity, Long order_id) {
 		this.setItem_id(item_id);
@@ -31,7 +34,7 @@ public class OrderItem {
 		this.setItem_name(item_name);
 		this.setItem_value(item_value);
 
-//		this.setCost(cost);
+		this.setCost(cost);
 	}
 
 	public Long getOrder_id() {
@@ -82,14 +85,6 @@ public class OrderItem {
 		this.item_name = item_name;
 	}
 
-	public Double getCost() {
-		return cost;
-	}
-
-	public void setCost(Double cost) {
-		this.cost = cost;
-	}
-
 	public Double getItem_value() {
 		return item_value;
 	}
@@ -98,12 +93,22 @@ public class OrderItem {
 		this.item_value = item_value;
 	}
 
-	@Override
-	public String toString() {
-		return ("Order ID: " + order_id + ", First Name: " + first_name + ", Surname: " + surname + ", Product: " + item_name + ", Quantity: "
-				+ quantity + ", Total Cost: " + cost);
+	public Double getCost() {
+		return cost;
 	}
 
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
+	@Override
+	public String toString() {
+		return ("Order ID: " + order_id + ", First Name: " + first_name + ", Surname: " + surname + ", Product: "
+				+ item_name + ", Quantity: " + quantity);
+	}
+	public String toStringCost() {
+		return ("Total Cost: " + cost);
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -171,5 +176,4 @@ public class OrderItem {
 		return true;
 	}
 
-	
 }
