@@ -23,13 +23,13 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
     `order_id` int(11) NOT NULL AUTO_INCREMENT,
     
     PRIMARY KEY (`order_id`),
-    FOREIGN KEY (`customer_id`) REFERENCES customers(`id`)
+    FOREIGN KEY (`customer_id`) REFERENCES customers(`id`) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS `ims`.`ordersitems` (
     `order_id` INT(11) NOT NULL,
     `item_id` int(11) NOT NULL,
     `quantity` int(40) DEFAULT NULL,
-    Foreign Key (`item_id`) REFERENCES  items(`item_id`),
-    FOREIGN KEY (`order_id`) REFERENCES orders(`order_id`)
+    Foreign Key (`item_id`) REFERENCES  items(`item_id`) on delete cascade,
+    FOREIGN KEY (`order_id`) REFERENCES orders(`order_id`)on delete cascade
 );
