@@ -99,7 +99,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 
 
 		LOGGER.info("Please enter the id of an order you would like to change ");
-		Long ordeId = utils.getLong();
+		Long orderId = utils.getLong();
 		LOGGER.info("Please enter the id of  of the item you would like to delete");
 		Long itemId = utils.getLong();
 		return orderitemDAO.deleteProduct(itemId , orderId);

@@ -120,6 +120,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
+		
 		return null;
 	}
 
@@ -143,8 +144,8 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 
 	
-	
-	public int delete(long itemId long orderId) {
+
+	public int deleteProduct(long itemId ,long orderId) {
 
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
