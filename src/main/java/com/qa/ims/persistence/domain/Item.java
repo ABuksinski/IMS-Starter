@@ -1,49 +1,49 @@
 package com.qa.ims.persistence.domain;
 
 public class Item {
-	private Long item_id;
-	private String item_name;
-	private Double item_value;
+	private Long itemId;
+	private String itemName;
+	private Double itemValue;
 
-	public Item(String item_name, Double item_value) {
-		this.setItem_name(item_name);
-		this.setItem_value(item_value);
+	public Item(String itemName, Double itemValue) {
+		this.setItemName(itemName);
+		this.setItemValue(itemValue);
 	}
 
-	public Item(Long item_id, String item_name, Double item_value) {
-		this.setItem_id(item_id);
-		this.setItem_name(item_name);
-		this.setItem_value(item_value);
+	public Item(Long itemId, String itemName, Double itemValue) {
+		this.setItemId(itemId);
+		this.setItemName(itemName);
+		this.setItemValue(itemValue);
 
 	}
 
-	public Long getItem_id() {
-		return item_id;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setItem_id(Long item_id) {
-		this.item_id = item_id;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
-	public String getItem_name() {
-		return item_name;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
-	public Double getItem_value() {
-		return item_value;
+	public Double getItemValue() {
+		return itemValue;
 	}
 
-	public void setItem_value(Double item_value) {
-		this.item_value = item_value;
+	public void setItemValue(Double itemValue) {
+		this.itemValue = itemValue;
 	}
 
 	@Override
 	public String toString() {
-		return ("Item id: " + item_id + " Item name: " + item_name + " Price: " + item_value);
+		return ("Item id: " + itemId + " Item name: " + itemName + " Price: " + itemValue);
 
 	}
 
@@ -51,9 +51,9 @@ public class Item {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((item_name == null) ? 0 : item_name.hashCode());
-		result = prime * result + ((item_id == null) ? 0 : item_id.hashCode());
-		result = prime * result + ((item_value == null) ? 0 : item_value.hashCode());
+		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
+		result = prime * result + ((itemId == null) ? 0 : itemId.hashCode());
+		result = prime * result + ((itemValue == null) ? 0 : itemValue.hashCode());
 		return result;
 	}
 
@@ -66,20 +66,20 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (getItem_name() == null) {
-			if (other.getItem_name() != null)
+		if (getItemName() == null) {
+			if (other.getItemName() != null)
 				return false;
-		} else if (!getItem_name().equals(other.getItem_name()))
+		} else if (!getItemName().equals(other.getItemName()))
 			return false;
-		if (item_id == null) {
-			if (other.item_id != null)
+		if (itemId == null) {
+			if (other.itemId != null)
 				return false;
-		} else if (!item_id.equals(other.item_id))
+		} else if (!itemId.equals(other.itemId))
 			return false;
-		if (item_value == null) {
-			if (other.item_value != null)
+		if (itemValue == null) {
+			if (other.itemValue != null)
 				return false;
-		} else if (!item_value.equals(other.item_value))
+		} else if (!itemValue.equals(other.itemValue))
 			return false;
 		return true;
 	}
