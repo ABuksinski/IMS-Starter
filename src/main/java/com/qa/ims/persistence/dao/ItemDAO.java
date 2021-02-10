@@ -11,7 +11,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.DBUtils;
 
@@ -29,7 +28,7 @@ public class ItemDAO implements Dao<Item> {
 
 	@Override
 	public List<Item> readAll() {
-	
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM items");) {
@@ -76,6 +75,7 @@ public class ItemDAO implements Dao<Item> {
 	}
 
 	@Override
+
 	public Item read(Long itemId) {
 	
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -92,7 +92,6 @@ public class ItemDAO implements Dao<Item> {
 		return null;
 	}
 
-
 	@Override
 	public Item update(Item item) {
 
@@ -108,9 +107,11 @@ public class ItemDAO implements Dao<Item> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return null;}
+		return null;
+	}
 
 	@Override
+
 	public int delete(long itemId) {
 	
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -124,6 +125,4 @@ public class ItemDAO implements Dao<Item> {
 		return 0;
 	}
 
-	}
-
-
+}

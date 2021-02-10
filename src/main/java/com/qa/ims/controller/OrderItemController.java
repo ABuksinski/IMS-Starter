@@ -26,20 +26,19 @@ public class OrderItemController implements CrudController<OrderItem> {
 
 	@Override
 	public List<OrderItem> readAll() {
-		
+
 		List<OrderItem> orderitems = orderitemDAO.readAll();
 		for (OrderItem orderitem : orderitems) {
 			LOGGER.info(orderitem);
-			
-			
+
 		}
-		
-		
+
 		return orderitems;
 	}
-	
+
 	public OrderItem create(Long orderId) {
 	
+
 		boolean bOoLeAn = true;
 
 		do {
@@ -47,7 +46,9 @@ public class OrderItemController implements CrudController<OrderItem> {
 			Long itemId = utils.getLong();
 			LOGGER.info("Please enter the quantity");
 			Long quantity = utils.getLong();
+
 			OrderItem orderitem = orderitemDAO.create(new OrderItem(orderId,itemId, quantity));
+
 			LOGGER.info("Item added");
 
 			LOGGER.info("Would you like  to add another Product into the order \n YES or NO");
@@ -67,7 +68,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 	}
 
 	public OrderItem createNew() {
-	
+
 		LOGGER.info("Please enter an existing Order ID that you wish to add a Product to");
 		Long orderId = utils.getLong();
 		LOGGER.info("Please enter an Item ID that you  wish to add");
@@ -93,18 +94,21 @@ public class OrderItemController implements CrudController<OrderItem> {
 		return orderitem;
 	}
 
-	
 	@Override
 	public int delete() {
-	
-		LOGGER.info("Please enter the id of the item you would like to delete");
+
+
+		LOGGER.info("Please enter the id of an order you would like to change ");
+		Long ordeId = utils.getLong();
+		LOGGER.info("Please enter the id of  of the item you would like to delete");
 		Long itemId = utils.getLong();
-		return orderitemDAO.delete(itemId);
+		return orderitemDAO.deleteProduct(itemId , orderId);
+
 	}
 
 	@Override
 	public OrderItem create() {
-	
+
 		return null;
 	}
 }
