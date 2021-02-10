@@ -39,10 +39,10 @@ public class ItemController implements CrudController<Item> {
 	public Item create() {
 		// TODO Auto-generated method stub
 		LOGGER.info("Please enter a Product Name");
-		String item_name = utils.getString();
+		String itemName = utils.getString();
 		LOGGER.info("Please enter a Product Price");
-		Double item_value = utils.getDouble();
-		Item item = itemDAO.create(new Item(item_name, item_value));
+		Double itemValue = utils.getDouble();
+		Item item = itemDAO.create(new Item(itemName, itemValue));
 		LOGGER.info("Product created");
 		return item;
 	}
@@ -51,12 +51,12 @@ public class ItemController implements CrudController<Item> {
 	public Item update() {
 		// TODO Auto-generated method stub
 		LOGGER.info("Please enter the id of the Product you would like to update");
-		Long item_id = utils.getLong();
+		Long itemId = utils.getLong();
 		LOGGER.info("Please enter a Product Name");
-		String firstName = utils.getString();
+		String itemName = utils.getString();
 		LOGGER.info("Please enter a Product Price");
-		Double surname = utils.getDouble();
-		Item item = itemDAO.update(new Item(item_id, firstName, surname));
+		Double itemValue = utils.getDouble();
+		Item item = itemDAO.update(new Item(itemId, itemName, itemValue));
 		LOGGER.info("Product Updated");
 		return item;
 	}
@@ -65,8 +65,8 @@ public class ItemController implements CrudController<Item> {
 	public int delete() {
 		// TODO Auto-generated method stub
 		LOGGER.info("Please enter the id of the Product you would like to delete");
-		Long item_id = utils.getLong();
-		return itemDAO.delete(item_id);
+		Long itemId = utils.getLong();
+		return itemDAO.delete(itemId);
 	}
 
 }

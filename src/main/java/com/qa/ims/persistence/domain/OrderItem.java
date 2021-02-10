@@ -1,110 +1,93 @@
 package com.qa.ims.persistence.domain;
 
 public class OrderItem {
-	private Long order_id;
-	private Long item_id;
+	private Long orderId;
+	private Long itemId;
 	private Long quantity;
-	private String first_name;
+	private String firstName;
 	private String surname;
-	private String item_name;
-	private Double item_value;
+	private String itemName;
+	private Double itemValue;
 	private Double cost;
 
-	public OrderItem(Long item_id, Long quantity) {
-		this.setItem_id(item_id);
+	public OrderItem(Long itemId, Long quantity) {
+		this.setItemId(itemId);
 		this.setQuantity(quantity);
 	}
 	public OrderItem(Double cost) {
 		this.setCost(cost);
 	}
 
-	public OrderItem(Long item_id, Long quantity, Long order_id) {
-		this.setItem_id(item_id);
+	public OrderItem(Long itemId, Long quantity, Long orderId) {
+		this.setItemId(itemId);
 		this.setQuantity(quantity);
-		this.setOrder_id(order_id);
+		this.setOrderId(orderId);
 	}
 
-	public OrderItem(Long order_id, Long item_id, Long quantity, String first_name, String surname, String item_name,
+	public OrderItem(Long orderId, Long itemId, Long quantity, String firstName, String surname, String itemName,
 			Double item_value) {
-		this.setItem_id(item_id);
+		this.setItemId(itemId);
 		this.setQuantity(quantity);
-		this.setOrder_id(order_id);
-		this.setFirst_name(first_name);
+		this.setOrderId(orderId);
+		this.setFirstName(firstName);
 		this.setSurname(surname);
-		this.setItem_name(item_name);
-		this.setItem_value(item_value);
+		this.setItemName(itemName);
+		this.setItemValue(itemValue);
+		this.setCost(cost);}
 
-		this.setCost(cost);
+		
+	public Long getOrderId() {
+		return orderId;
 	}
-
-	public Long getOrder_id() {
-		return order_id;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
-
-	public void setOrder_id(Long order_id) {
-		this.order_id = order_id;
+	public Long getItemId() {
+		return itemId;
 	}
-
-	public Long getItem_id() {
-		return item_id;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
-
-	public void setItem_id(Long item_id) {
-		this.item_id = item_id;
-	}
-
 	public Long getQuantity() {
 		return quantity;
 	}
-
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
-
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
-
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-
 	public String getSurname() {
 		return surname;
 	}
-
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
-	public String getItem_name() {
-		return item_name;
+	public String getItemName() {
+		return itemName;
 	}
-
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
-
-	public Double getItem_value() {
-		return item_value;
+	public Double getItemValue() {
+		return itemValue;
 	}
-
-	public void setItem_value(Double item_value) {
-		this.item_value = item_value;
+	public void setItemValue(Double itemValue) {
+		this.itemValue = itemValue;
 	}
-
 	public Double getCost() {
 		return cost;
 	}
-
 	public void setCost(Double cost) {
 		this.cost = cost;
 	}
-
 	@Override
 	public String toString() {
-		return ("Order ID: " + order_id + ", First Name: " + first_name + ", Surname: " + surname + ", Product: "
-				+ item_name + ", Quantity: " + quantity);
+		return ("Order ID: " + orderId + ", First Name: " + firstName + ", Surname: " + surname + ", Product: "
+				+ itemName + ", Quantity: " + quantity);
 	}
 	public String toStringCost() {
 		return ("Total Cost: " + cost);
@@ -114,16 +97,15 @@ public class OrderItem {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cost == null) ? 0 : cost.hashCode());
-		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
-		result = prime * result + ((item_id == null) ? 0 : item_id.hashCode());
-		result = prime * result + ((item_name == null) ? 0 : item_name.hashCode());
-		result = prime * result + ((item_value == null) ? 0 : item_value.hashCode());
-		result = prime * result + ((order_id == null) ? 0 : order_id.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((itemId == null) ? 0 : itemId.hashCode());
+		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
+		result = prime * result + ((itemValue == null) ? 0 : itemValue.hashCode());
+		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -138,30 +120,30 @@ public class OrderItem {
 				return false;
 		} else if (!cost.equals(other.cost))
 			return false;
-		if (first_name == null) {
-			if (other.first_name != null)
+		if (firstName == null) {
+			if (other.firstName != null)
 				return false;
-		} else if (!first_name.equals(other.first_name))
+		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (item_id == null) {
-			if (other.item_id != null)
+		if (itemId == null) {
+			if (other.itemId != null)
 				return false;
-		} else if (!item_id.equals(other.item_id))
+		} else if (!itemId.equals(other.itemId))
 			return false;
-		if (item_name == null) {
-			if (other.item_name != null)
+		if (itemName == null) {
+			if (other.itemName != null)
 				return false;
-		} else if (!item_name.equals(other.item_name))
+		} else if (!itemName.equals(other.itemName))
 			return false;
-		if (item_value == null) {
-			if (other.item_value != null)
+		if (itemValue == null) {
+			if (other.itemValue != null)
 				return false;
-		} else if (!item_value.equals(other.item_value))
+		} else if (!itemValue.equals(other.itemValue))
 			return false;
-		if (order_id == null) {
-			if (other.order_id != null)
+		if (orderId == null) {
+			if (other.orderId != null)
 				return false;
-		} else if (!order_id.equals(other.order_id))
+		} else if (!orderId.equals(other.orderId))
 			return false;
 		if (quantity == null) {
 			if (other.quantity != null)
@@ -176,4 +158,20 @@ public class OrderItem {
 		return true;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+

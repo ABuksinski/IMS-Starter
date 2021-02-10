@@ -29,7 +29,6 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public List<Order> readAll() {
-		// TODO Auto-generated method stub
 		List<Order> orders = orderDAO.readAll();
 		for (Order order : orders) {
 			LOGGER.info(order);
@@ -42,22 +41,21 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("Enter the Id of your  order:");
 			Long order_id = utils.getLong();
 			LOGGER.info(orderitemDAO.calculateOrderCost(order_id).toStringCost());
-			return null;
+			return orders;
 		} else if (cost.equalsIgnoreCase("no")) {
 			return orders;
 
-		} else {
+		} else {return orders;
 		}
-		return orders;
 	}
 
 	@Override
 	public Order create() {
-		// TODO Auto-generated method stub
+	
 		LOGGER.info("Please enter your Customer ID");
-		Long customer_id = utils.getLong();
-		Order order = orderDAO.create(new Order(customer_id));
-		LOGGER.info("Order " + order.getOrder_id() + " created");
+		Long customerId = utils.getLong();
+		Order order = orderDAO.create(new Order(customerId));
+		LOGGER.info("Order " + order.getOrderId() + " created");
 		LOGGER.info("Would you like to add  item to an order? /r/n Yes or No");
 		String adding = utils.getString();
 		if (adding.equalsIgnoreCase("yes")) {
@@ -71,10 +69,10 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public Order update() {
-		// TODO Auto-generated method stub
+	
 		LOGGER.info("Please enter your Customer ID");
-		Long customer_id = utils.getLong();
-		LOGGER.info(orderDAO.readOrders(customer_id));
+		Long customerId = utils.getLong();
+		LOGGER.info(orderDAO.readOrders(customerId));
 		LOGGER.info("Would you like to add a new Product or update existing order?");
 		LOGGER.info("NEW or EXISTING");
 		String method = utils.getString();
@@ -95,8 +93,8 @@ public class OrderController implements CrudController<Order> {
 	public int delete() {
 		// TODO Auto-generated method stub
 		LOGGER.info("Please enter your Customer ID");
-		Long customer_id = utils.getLong();
-		LOGGER.info(orderDAO.readOrders(customer_id));
+		Long customerId = utils.getLong();
+		LOGGER.info(orderDAO.readOrders(customerId));
 		LOGGER.info("Would you like to delete a product or a whole order?");
 		LOGGER.info("product or order");
 		String method = utils.getString();
@@ -105,8 +103,8 @@ public class OrderController implements CrudController<Order> {
 			return 0;
 		} else if (method.equalsIgnoreCase("order")) {
 			LOGGER.info("Please eneter the ID of an order that you wish to  delete");
-			Long order_id = utils.getLong();
-			orderDAO.delete(order_id);
+			Long orderId = utils.getLong();
+			orderDAO.delete(orderId);
 			return 0;
 		}
 
