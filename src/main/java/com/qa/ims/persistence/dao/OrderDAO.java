@@ -38,7 +38,7 @@ public class OrderDAO implements Dao<Order> {
 			}
 			return orders;
 		} catch (SQLException e) {
-			LOGGER.debug(e);
+			LOGGER.debug(e); 
 			LOGGER.error(e.getMessage());
 		}
 		return new ArrayList<>();
@@ -59,7 +59,7 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	public List<Order> readOrders(Long customer_id) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("SELECT * FROM orders WHERE customer_id = ?");) {
@@ -76,12 +76,12 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return null ;
+		return null;
 	}
 
 	@Override
 	public Order read(Long customer_id) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders WHERE order_id = ?");) {
 			statement.setLong(1, customer_id);
@@ -98,7 +98,7 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order create(Order order) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO orders(customer_id) VALUES (?)");) {
@@ -120,7 +120,7 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public int delete(long order_id) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("DELETE FROM orders WHERE order_id = ?");) {
 			statement.setLong(1, order_id);

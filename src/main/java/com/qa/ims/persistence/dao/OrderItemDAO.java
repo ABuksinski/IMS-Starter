@@ -41,7 +41,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 	public OrderItem modelFromResultSet3(ResultSet resultSet) throws SQLException {
 		Double cost = resultSet.getDouble("Total Cost");
-		return new OrderItem(cost);
+		return new OrderItem(cost); 
 	}
 
 	public OrderItem readLatest() {
@@ -60,7 +60,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 	@Override
 	public List<OrderItem> readAll() {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
@@ -79,7 +79,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 	@Override
 	public OrderItem read(Long order_id) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("SELECT * FROM ordersitems WHERE order_id = ?");) {
@@ -97,13 +97,12 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 	@Override
 	public OrderItem create(OrderItem orderitem) {
-		// TODO Auto-generated method stub
 
 		return null;
 	}
 
 	public OrderItem createNew(OrderItem orderitem, Long order_id) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO ordersitems(order_id ,item_id, quantity) VALUES (? ,?, ?)");) {
@@ -122,7 +121,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 	@Override
 	public OrderItem update(OrderItem orderitem) {
-		// TODO Auto-generated method stub
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE ordersitems SET quantity = ? WHERE item_id = ? and order_id = ?;");) {
@@ -138,18 +137,19 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		return null;
 	}
 
-	@Override
-	public int delete(long item_id) {
-		// TODO Auto-generated method stub
+	
+	public int deleteProduct(long item_id , long order_id) {
+
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("DELETE FROM ordersitems WHERE item_id = ?");) {
-			statement.setLong(1, item_id);
+						.prepareStatement("DELETE FROM ordersitems WHERE order_id = ? and item_id = ?");) {
+			statement.setLong(2, item_id);
+			statement.setLong(1, order_id);
 			return statement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
-		}
+		} 
 		return 0;
 	}
 
@@ -171,5 +171,11 @@ public class OrderItemDAO implements Dao<OrderItem> {
 		}
 		return null;
 
+	}
+
+	@Override
+	public int delete(long id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

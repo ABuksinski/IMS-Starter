@@ -45,13 +45,14 @@ public class OrderController implements CrudController<Order> {
 		} else if (cost.equalsIgnoreCase("no")) {
 			return orders;
 
-		} else {return orders;
+		} else {
+			return orders;
 		}
 	}
 
 	@Override
 	public Order create() {
-	
+
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
 		Order order = orderDAO.create(new Order(customer_id));
@@ -69,7 +70,7 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public Order update() {
-	
+
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
 		LOGGER.info(orderDAO.readOrders(customer_id));
@@ -91,7 +92,7 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public int delete() {
-		// TODO Auto-generated method stub
+
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
 		LOGGER.info(orderDAO.readOrders(customer_id));
@@ -103,7 +104,7 @@ public class OrderController implements CrudController<Order> {
 			return 0;
 		} else if (method.equalsIgnoreCase("order")) {
 			LOGGER.info("Please eneter the ID of an order that you wish to  delete");
-			Long order_id = utils.getLong();
+			Long order_id = utils.getLong(); 
 			orderDAO.delete(order_id);
 			return 0;
 		}
