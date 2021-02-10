@@ -18,7 +18,7 @@ public class ItemTest {
 			
 			@Test
 			public void testGetitemValue() {
-				assertEquals(10, test.getItemValue());
+				assertEquals(Double.valueOf(10), test.getItemValue());
 			
 		}
 			@Test
@@ -39,7 +39,7 @@ public class ItemTest {
 			}
 			@Test 
 			public void testToString( ) {
-				assertEquals( "Item id: 2 Item name: name  Price: 10.00",test.toString());
+				assertEquals( "Item id: 2 Item name: name Price: 10.0",test.toString());
 			}
 	}
 
