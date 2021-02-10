@@ -29,7 +29,6 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public List<Order> readAll() {
-		// TODO Auto-generated method stub
 		List<Order> orders = orderDAO.readAll();
 		for (Order order : orders) {
 			LOGGER.info(order);
@@ -42,18 +41,17 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("Enter the Id of your  order:");
 			Long order_id = utils.getLong();
 			LOGGER.info(orderitemDAO.calculateOrderCost(order_id).toStringCost());
-			return null;
+			return orders;
 		} else if (cost.equalsIgnoreCase("no")) {
 			return orders;
 
-		} else {
+		} else {return orders;
 		}
-		return orders;
 	}
 
 	@Override
 	public Order create() {
-		// TODO Auto-generated method stub
+	
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
 		Order order = orderDAO.create(new Order(customer_id));
@@ -71,7 +69,7 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public Order update() {
-		// TODO Auto-generated method stub
+	
 		LOGGER.info("Please enter your Customer ID");
 		Long customer_id = utils.getLong();
 		LOGGER.info(orderDAO.readOrders(customer_id));

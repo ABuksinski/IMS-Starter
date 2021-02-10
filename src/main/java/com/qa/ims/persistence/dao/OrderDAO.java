@@ -44,23 +44,6 @@ public class OrderDAO implements Dao<Order> {
 		return new ArrayList<>();
 	}
 
-	public List<Order> readSpecific() {
-		try (Connection connection = DBUtils.getInstance().getConnection();
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders");) {
-
-			List<Order> orders = new ArrayList<>();
-			while (resultSet.next()) {
-				orders.add(modelFromResultSet(resultSet));
-			}
-			return orders;
-		} catch (SQLException e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-		}
-		return new ArrayList<>();
-	}
-
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
@@ -93,7 +76,7 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return null;
+		return null ;
 	}
 
 	@Override

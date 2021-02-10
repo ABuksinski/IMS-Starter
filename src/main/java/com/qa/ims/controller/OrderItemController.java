@@ -26,7 +26,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 
 	@Override
 	public List<OrderItem> readAll() {
-		// TODO Auto-generated method stub
+		
 		List<OrderItem> orderitems = orderitemDAO.readAll();
 		for (OrderItem orderitem : orderitems) {
 			LOGGER.info(orderitem);
@@ -39,11 +39,11 @@ public class OrderItemController implements CrudController<OrderItem> {
 	}
 	
 	public OrderItem create(Long order_id) {
-		// TODO Auto-generated method stub
+	
 		boolean bOoLeAn = true;
 
 		do {
-			LOGGER.info("Please enter an Item ID that you  wish to add");
+			LOGGER.info("Please enter an ID of a Product you  wish to add");
 			Long item_id = utils.getLong();
 			LOGGER.info("Please enter the quantity");
 			Long quantity = utils.getLong();
@@ -67,7 +67,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 	}
 
 	public OrderItem createNew() {
-		// TODO Auto-generated method stub
+	
 		LOGGER.info("Please enter an existing Order ID that you wish to add a Product to");
 		Long order_id = utils.getLong();
 		LOGGER.info("Please enter an Item ID that you  wish to add");
@@ -81,7 +81,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 
 	@Override
 	public OrderItem update() {
-		// TODO Auto-generated method stub
+
 		LOGGER.info("Please enter the ID of  the order you would  like to change");
 		Long order_id = utils.getLong();
 		LOGGER.info("Please enter item ID");
@@ -96,7 +96,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 	
 	@Override
 	public int delete() {
-		// TODO Auto-generated method stub
+	
 		LOGGER.info("Please enter the id of the item you would like to delete");
 		Long item_id = utils.getLong();
 		return orderitemDAO.delete(item_id);
@@ -104,7 +104,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 
 	@Override
 	public OrderItem create() {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 }
