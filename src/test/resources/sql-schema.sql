@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `ims`.`items` (
 CREATE TABLE IF NOT EXISTS `ims`.`orders` (
     `customer_id` INT(11) NOT NULL,
     `order_id` int(11) NOT NULL AUTO_INCREMENT,
-    
     PRIMARY KEY (`order_id`),
     FOREIGN KEY (`customer_id`) REFERENCES customers(`id`) on delete cascade
 );
