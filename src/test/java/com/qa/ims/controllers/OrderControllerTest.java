@@ -1,4 +1,5 @@
 package com.qa.ims.controllers;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-
 import com.qa.ims.controller.OrderController;
 import com.qa.ims.controller.OrderItemController;
 
@@ -19,7 +19,9 @@ import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.dao.OrderItemDAO;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.Utils;
+
 @RunWith(MockitoJUnitRunner.class)
 public class OrderControllerTest {
 	@Mock
@@ -37,12 +39,20 @@ public class OrderControllerTest {
 
 	@Test
 	public void testCreate() {
-		final Long customerId = 5L, orderId = 10L;
+		final Long customerId = 1L, orderId = 2L;
 		final Order created = new Order(customerId, orderId);
+		final OrderItem created1 = new OrderItem( orderId,10L,1L);
+		final String adding = "yes";
 
-		Mockito.when(utils.getLong()).thenReturn(customerId, orderId);
+		Mockito.when(utils.getLong()).thenReturn(customerId);
+//		Mockito.when(utils.getLong()).thenReturn(orderId);
 		Mockito.when(dao.create(created)).thenReturn(created);
-
+		Mockito.when(utils.getString()).thenReturn(adding);
+//		Mockito.when(controller.getOrderId()).thenReturn(orderId);
+		Mockito.when(itemController.createNew()).thenReturn(created1);
+		
+		
+		
 		assertEquals(created, controller.create());
 
 		Mockito.verify(utils, Mockito.times(2)).getLong();
@@ -65,14 +75,14 @@ public class OrderControllerTest {
 	public void testUpdate() {
 		Order updated = new Order(1L, 1L);
 
-		Mockito.when(this.utils.getLong()).thenReturn(1L,1L);
-		
+		Mockito.when(this.utils.getLong()).thenReturn(1L, 1L);
+
 		Mockito.when(this.dao.update(updated)).thenReturn(updated);
 
 		assertEquals(updated, this.controller.update());
 
 		Mockito.verify(this.utils, Mockito.times(2)).getLong();
-	
+
 		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
 	}
 

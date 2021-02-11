@@ -34,6 +34,6 @@ public void testEquals() {
 	}
 	@Test 
 	public void testToString( ) {
-		assertEquals( "CustomerID: 2, Order ID: 2" ,test.toString());
+		assertEquals( "Customer ID: 1,  Order ID: 1" ,test.toString());
 	}
 }
