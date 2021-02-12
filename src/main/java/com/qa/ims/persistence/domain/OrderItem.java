@@ -25,7 +25,7 @@ public class OrderItem {
 	}
 
 	public OrderItem(Long orderId, Long itemId, Long quantity, String firstName, String surname, String itemName,
-			Double item_value) {
+			Double itemValue) {
 		this.setItemId(itemId);
 		this.setQuantity(quantity);
 		this.setOrderId(orderId);
