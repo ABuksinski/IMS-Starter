@@ -1,4 +1,4 @@
-Coverage: 66.1%
+Coverage: 73.4%
 # Project IMS
 
 IMS project is a Java language learning project designed to create shop-like programme using CRUD for customers, items and orders and store the information in My SQL database.
