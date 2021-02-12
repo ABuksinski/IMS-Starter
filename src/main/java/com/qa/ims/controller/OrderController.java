@@ -39,9 +39,10 @@ public class OrderController implements CrudController<Order> {
 		String cost = utils.getString();
 		if (cost.equalsIgnoreCase("yes")) {
 			LOGGER.info("Enter the Id of your  order:");
-			Long order_id = utils.getLong();
-			LOGGER.info(orderitemDAO.calculateOrderCost(order_id).toStringCost());
+			Long orderId = utils.getLong();
+			LOGGER.info(orderitemDAO.calculateOrderCost(orderId).toStringCost());
 			return orders;
+			
 		} else if (cost.equalsIgnoreCase("no")) {
 			return orders;
 
@@ -56,7 +57,7 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter your Customer ID");
 		Long customerId = utils.getLong();
 		Order order = orderDAO.create(new Order(customerId));
-		LOGGER.info("Order " + order.getOrderId() + " created");
+		LOGGER.info("Order {} created" , order.getOrderId() );
 		LOGGER.info("Would you like to add  item to an order? /r/n Yes or No");
 		String adding = utils.getString();
 		if (adding.equalsIgnoreCase("yes")) {

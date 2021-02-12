@@ -8,6 +8,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class OrderItemTest {
 	private OrderItem test = new OrderItem(1L, 1L, 5L, "Adrian", "Buksinski", "mug", 10.0);
+	private OrderItem costing = new OrderItem(50.0);
 
 	@Test
 	public void testEquals() {
@@ -56,7 +57,7 @@ public class OrderItemTest {
 
 	@Test
 	public void testGetCost() {
-		assertEquals(Double.valueOf(50), test.getCost());
+		assertEquals(Double.valueOf(50), costing.getCost());
 
 	}
 
@@ -76,6 +77,6 @@ public class OrderItemTest {
 
 	@Test
 	public void testToStringCost() {
-		assertEquals("Total Cost: 50.0", test.toString());
+		assertEquals("Total Cost: 50.0", costing.toStringCost());
 	}
 }
