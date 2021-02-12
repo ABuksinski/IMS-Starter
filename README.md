@@ -1,68 +1,28 @@
-Coverage: 34%
-# Project Title
+Coverage: 73.4%
+# Project IMS
 
-One Paragraph of project description goes here
+IMS project is a Java language learning project designed to create shop-like programme using CRUD for customers, items and orders and store the information in My SQL database.
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+In src/main/resources/db.properties enter the information for your SQL database.
 
 ### Prerequisites
+Requirements to run the programme:
+Java 14 or later
+SQL 5.7 or later
+Java IDE
 
-What things you need to install the software and how to install them
+## User Stories and Organisation
+(https://abuksinski.atlassian.net/secure/RapidBoard.jspa?projectKey=IMS&rapidView=2&view=planning.nodetail&atlOrigin=eyJpIjoiNjMyYTA5OTY4YTg2NDQ4ZDkwOWM0MjA4YmI5NThkZDciLCJwIjoiaiJ9) 
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system. Break down into which tests and what they do
-
-### Unit Tests 
-
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+###  Tests 
+Right click src/test/java and run as JUnit test
+Allow all  tests to finish
+Use Coverage as JUnit test to obtain coverage
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To run a programme, clone the repository to  your local machine and open it in eclipse. Then locate Runner class, right click it and run the java application.
 
 ## Built With
 
@@ -70,11 +30,12 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+We use Git for versioning.
 
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Adrian Buksinski** -*final work* - [ABuksinski](https://github.com/ABuksinski)
 
 ## License
 
