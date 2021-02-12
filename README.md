@@ -32,7 +32,7 @@ We use Git for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
-* ** Adrian Buksinski** -*final work* - [ABuksinski](https://github.com/ABuksinski)
+* **Adrian Buksinski** -*final work* - [ABuksinski](https://github.com/ABuksinski)
 
 ## License
 
