@@ -12,6 +12,9 @@ Java 14 or later
 SQL 5.7 or later
 Java IDE
 
+## User Stories and Organisation
+(https://abuksinski.atlassian.net/secure/RapidBoard.jspa?projectKey=IMS&rapidView=2&view=planning.nodetail&atlOrigin=eyJpIjoiNjMyYTA5OTY4YTg2NDQ4ZDkwOWM0MjA4YmI5NThkZDciLCJwIjoiaiJ9) 
+
 ###  Tests 
 Right click src/test/java and run as JUnit test
 Allow all  tests to finish
