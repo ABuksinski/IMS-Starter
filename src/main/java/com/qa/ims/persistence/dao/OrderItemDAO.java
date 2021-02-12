@@ -136,6 +136,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
+			
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
@@ -182,7 +183,7 @@ public class OrderItemDAO implements Dao<OrderItem> {
 
 	@Override
 	public int delete(long id) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 }

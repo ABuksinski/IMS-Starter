@@ -1,5 +1,6 @@
 package com.qa.ims.persistence.dao;
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +8,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.DBUtils;
 
-
-
-
-
-public class OrderItemDAOTest {
+public class OrderItemDAOExceptionTest {
 	private final OrderItemDAO DAO = new OrderItemDAO();
-
+	
 	@Before
 	public void setup() {
-		DBUtils.connect();
+		DBUtils.connect("Fail");
 		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-data.sql");
 	}
 
@@ -28,7 +24,7 @@ public class OrderItemDAOTest {
 	public void testCreateNew() {
 		final OrderItem created = new OrderItem(1L, 1L, 1L);
 	
-		assertEquals(created, DAO.createNew(created,1L));
+		assertEquals(null, DAO.createNew(created,1L));
 		
 	}
 	@Test
@@ -43,27 +39,27 @@ public class OrderItemDAOTest {
 		List<OrderItem> expected = new ArrayList<>();
 		expected.add(new OrderItem(1L,1L, 10L, "jordan","harrison","cup",20.0));
 	
-		assertEquals(expected, DAO.readAll());
+		assertEquals(new ArrayList<>(), DAO.readAll());
 	}
 
 	@Test
 	public void testReadLatest() {
 
-		assertEquals(new OrderItem(1L, 1L,10L), DAO.readLatest());
+		assertEquals(null, DAO.readLatest());
 	}
 
 	@Test
 	public void testRead() {
 		final long ID = 1L;
 	
-		assertEquals(new OrderItem(ID, 1L, 10L), DAO.read(ID));
+		assertEquals(null, DAO.read(ID));
 	}
 
 	@Test
 	public void testUpdate() {
 		final OrderItem updated = new OrderItem(1L, 1L, 10L);
 	
-		assertEquals(updated, DAO.update(updated));
+		assertEquals(null, DAO.update(updated));
 
 	}
 
@@ -79,6 +75,7 @@ public class OrderItemDAOTest {
 		assertEquals(0, DAO.delete(1));
 	}
 	
-}
+	
+	}
 
 

@@ -44,6 +44,7 @@ public class OrderItemController implements CrudController<OrderItem> {
 		do {
 			LOGGER.info("Please enter an ID of a Product you  wish to add");
 			Long itemId = utils.getLong();
+			
 			LOGGER.info("Please enter the quantity");
 			Long quantity = utils.getLong();
 
